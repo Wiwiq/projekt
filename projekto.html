@@ -117,9 +117,9 @@ background: linear-gradient(to right, #E2E2E2, #C9D6FF);
 </header>
 <section class=”jumbotron”>
 <div class=”container”>
-<h1>Czwarta sekcja strony!</h1>
+<h2>Czwarta sekcja strony!</h2>
 <p>
-Tutaj umieszczam prosty projekt na zaliczenie. Będzie to prosty zegar cyfrowy wykorzystujący wygląd bootstrapa w wersji 4.
+Tutaj umieszczam prosty projekt na zaliczenie. Będzie to prosty cyfrowy stoper w javascript.
 
 </p>
 </div>
@@ -127,44 +127,22 @@ Tutaj umieszczam prosty projekt na zaliczenie. Będzie to prosty zegar cyfrowy w
 
 <main>
   <div id="col-left">Lewa kolumna</div>
-  
+
   <div id="col-center">
-<div class="clearfix"></div><hr />
-<div class="row">
-
-<div class="col-md-3">
-<div class="card bg-dark text-white">
-<h3 class="card-title text-center">
-<div class="d-flex flex-wrap justify-content-center mt-2">
-<a><span class="badge hours"></span></a> :
-<a><span class="badge min"></span></a> :
-<a><span class="badge sec"></span></a>
-</div>
-</h3>
-</div>
-</div>
+  
+  
+  <h1><time>00:00:00</time></h1>
+<button id="start">start</button>
+<button id="stop">stop</button>
+<button id="clear">clear</button>
 
 
-</div>
+
+  
+  
+
 </div>
 
-<script>
-$(document).ready(function() {
-setInterval( function() {
-var hours = new Date().getHours();
-$(".hours").html(( hours < 10 ? "0" : "" ) + hours);
-}, 1000);
-setInterval( function() {
-var minutes = new Date().getMinutes();
-$(".min").html(( minutes < 10 ? "0" : "" ) + minutes);
-},1000);
-setInterval( function() {
-var seconds = new Date().getSeconds();
-$(".sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-},1000);
-});
-</script>
-  </div>
 </main>
 </section>
 <footer>
@@ -199,6 +177,54 @@ $(".sec").html(( seconds < 10 ? "0" : "" ) + seconds);
 
    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script>
+var h1 = document.getElementsByTagName('h1')[0],
+  start = document.getElementById('start'),
+  stop = document.getElementById('stop'),
+  clear = document.getElementById('clear'),
+  seconds = 0,
+  minutes = 0,
+  hours = 0,
+  t;
+
+function add() {
+  seconds++;
+  if (seconds >= 60) {
+    seconds = 0;
+    minutes++;
+    if (minutes >= 60) {
+      minutes = 0;
+      hours++;
+    }
+  }
+
+  h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+  timer();
+}
+
+function timer() {
+  t = setTimeout(add, 1000);
+}
+timer();
+
+
+/* Start button */
+start.onclick = timer;
+
+/* Stop button */
+stop.onclick = function() {
+  clearTimeout(t);
+}
+
+/* Clear button */
+clear.onclick = function() {
+  h1.textContent = "00:00:00";
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+}
+</script>
     <script src="js/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
