@@ -129,17 +129,17 @@ Tutaj umieszczam prosty projekt na zaliczenie. Będzie to prosty cyfrowy stoper 
   <div id="col-left">Lewa kolumna</div>
 
   <div id="col-center">
-  
-  
+
+
   <h1><time>00:00:00</time></h1>
 <button id="start">start</button>
 <button id="stop">stop</button>
-<button id="clear">clear</button>
+<button id="zeruj">zeruj</button>
 
 
 
-  
-  
+
+
 
 </div>
 
@@ -181,7 +181,7 @@ Tutaj umieszczam prosty projekt na zaliczenie. Będzie to prosty cyfrowy stoper 
 var h1 = document.getElementsByTagName('h1')[0],
   start = document.getElementById('start'),
   stop = document.getElementById('stop'),
-  clear = document.getElementById('clear'),
+  zeruj = document.getElementById('zeruj'),
   seconds = 0,
   minutes = 0,
   hours = 0,
@@ -209,16 +209,16 @@ function timer() {
 timer();
 
 
-/* Start button */
+/* Start */
 start.onclick = timer;
 
-/* Stop button */
+/* Stop*/
 stop.onclick = function() {
   clearTimeout(t);
 }
 
-/* Clear button */
-clear.onclick = function() {
+/* Zeruj */
+zeruj.onclick = function() {
   h1.textContent = "00:00:00";
   seconds = 0;
   minutes = 0;
